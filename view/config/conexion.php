@@ -1,6 +1,6 @@
 <?php
 	
-	$mysqli = new mysqli('localhost', 'root', '', 'tarea1');
+	$mysqli = new mysqli('localhost', 'root', '', 'centro');
 	
 	if($mysqli->connect_error){
 		

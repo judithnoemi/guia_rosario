@@ -4,7 +4,7 @@ session_start();
 define('dbhost', 'localhost');
 define('dbuser', 'root');
 define('dbpass', '');
-define('dbname', 'tarea1');
+define('dbname', 'centro');
 
 // Coneccion a la base de datos
 try {

@@ -6,7 +6,8 @@ if(isset($_POST['login'])) {
     // Obtener datos del FORMULARIO
     $usuario = $_POST['usuario'];
     
-    $clave = MD5($_POST['clave']);
+     $clave = MD5($_POST['clave']);
+
 
     if($usuario == '')
       $errMsg = 'Digite su usuario';
@@ -15,16 +16,8 @@ if(isset($_POST['login'])) {
 
     if($errMsg == '') {
       try {
-        $stmt = $connect->prepare('SELECT id, nombre, usuario, email, clave, cargo FROM usuarios WHERE usuario = :usuario 
-        UNION 
-        SELECT codpaci, nombrep, apellidop, usuario, clave, cargo FROM pacientes WHERE usuario = :usuario 
-        UNION ALL
-        SELECT coddoc, nomdoc, apedoc, usuario, clave, cargo FROM doctor WHERE usuario = :usuario');
-        $stmt->execute(array(
-          ':usuario' => $usuario
-          
-          
-          ));
+        $stmt = $connect->prepare('SELECT id, nombre, email AS usuario, email, clave, cargo FROM usuarios WHERE email = :usuario');
+
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($data == false){
