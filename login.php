@@ -4,10 +4,10 @@ if(isset($_POST['login'])) {
     $errMsg = '';
 
     // Obtener datos del FORMULARIO
-    $usuario = $_POST['usuario'];
-    
-     $clave = MD5($_POST['clave']);
-
+   $usuario = $_POST['usuario'];
+  $clave = MD5($_POST['clave']);
+//
+    //$clave = $_POST['clave'];
 
     if($usuario == '')
       $errMsg = 'Digite su usuario';
@@ -16,8 +16,12 @@ if(isset($_POST['login'])) {
 
     if($errMsg == '') {
       try {
-        $stmt = $connect->prepare('SELECT id, nombre, email AS usuario, email, clave, cargo FROM usuarios WHERE email = :usuario');
-
+        $stmt = $connect->prepare('SELECT id, nombre, usuario, email, clave, cargo FROM usuarios WHERE usuario = :usuario');
+        $stmt->execute(array(
+          ':usuario' => $usuario
+          
+          
+          ));
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($data == false){
@@ -37,10 +41,8 @@ if(isset($_POST['login'])) {
             if ($_SESSION['cargo'] == 1) {
               header('Location: view/admin/admin.php');
           } else if ($_SESSION['cargo'] == 2) {
-              header('Location: view/user/user.php');
-          } else if ($_SESSION['cargo'] == 3) {
-              header('Location: view/admin/medico.php');
-          }
+              header('Location: view/admin/admin.php');
+          } 
         
         
             exit;
@@ -103,7 +105,7 @@ if(isset($_POST['login'])) {
     </div>
     <div class="div">
 
-    <input type="password" required="true" name="clave" value="<?php if(isset($_POST['clave'])) echo MD5($_POST['clave']) ?>" placeholder="CONTRASEÑA" >
+    <input type="password" required="true" name="clave" value="<?php if(isset($_POST['clave'])) echo$_POST['clave'] ?>" placeholder="CONTRASEÑA" >
     </div>
     </div>
     <div class="row" id="load" hidden="hidden">

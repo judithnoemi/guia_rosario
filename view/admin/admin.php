@@ -413,7 +413,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 											<h6 class="fw-bold mt-3 mb-0">Pacientes</h6>
 											<?php
 											require_once "../config/conexion1.php";
-											$sql = "SELECT COUNT(*) total FROM pacientes";
+											$sql = "SELECT COUNT(*) total FROM estudiantes";
 											$result = $bd->query($sql); //$pdo sería el objeto conexión
 											$total = $result->fetchColumn();
 											?>
@@ -424,7 +424,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 											<h6 class="fw-bold mt-3 mb-0">Doctores</h6>
 											<?php
 											require_once "../config/conexion1.php";
-											$sql = "SELECT COUNT(*) total FROM doctor";
+											$sql = "SELECT COUNT(*) total FROM carreras";
 											$result = $bd->query($sql); //$pdo sería el objeto conexión
 											$total2 = $result->fetchColumn();
 											?>
@@ -435,7 +435,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 											<h6 class="fw-bold mt-3 mb-0">Historial Clinico</h6>
 											<?php
 											require_once "../config/conexion1.php";
-											$sql = "SELECT COUNT(*) total FROM detallehistorial";
+											$sql = "SELECT COUNT(*) total FROM turnos";
 											$result = $bd->query($sql); //$pdo sería el objeto conexión
 											$total3 = $result->fetchColumn();
 											?>
@@ -455,10 +455,10 @@ if (!isset($_SESSION['cargo']) == 1) {
 									<?php
 									function connect()
 									{
-										return new mysqli("localhost", "root", "", "tarea1");
+										return new mysqli("localhost", "root", "", "universidad");
 									}
 									$con = connect();
-									$sql = "SELECT * FROM pacientes ORDER BY apellidop ASC LIMIT 5";
+									$sql = "SELECT * FROM estudiantes ORDER BY apellidop ASC LIMIT 5";
 									$query  = $con->query($sql);
 									$data =  array();
 									if ($query) {
@@ -489,79 +489,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 							</div>
 						</div>
 
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="card-title fw-mediumbold">Nuevos doctores</div>
-
-									<?php
-									$con = connect();
-									$sql = "SELECT * FROM doctor ORDER BY apedoc ASC LIMIT 5";
-									$query  = $con->query($sql);
-									$data =  array();
-									if ($query) {
-										while ($r = $query->fetch_object()) {
-											$data[] = $r;
-										}
-									}
-									?>
-									<?php if (count($data) > 0) : ?>
-										<?php foreach ($data as $d) : ?>
-											<div class="card-list">
-
-												<!-- POR ACA COMENTO O BAJO DATOS DE MYSQL PARA VISUALIZARLO CON LAS CONEXIONES--------  -->
-												<div class="item-list">
-													<div class="avatar">
-														<img src="../../assets/img/avatar.png" alt="..." class="avatar-img rounded-circle">
-													</div>
-													<div class="info-user ml-3">
-														<div class="username"><?php echo $d->apedoc; ?></div>
-														<div class="status">Doctores</div>
-													</div>
-												</div>
-											</div>
-										<?php endforeach; ?>
-									<?php else : ?>
-										<p class="alert alert-warning"><strong>No hay datos</strong></p>
-									<?php endif; ?>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="card-title fw-mediumbold">Nuevas especialidades</div>
-
-									<?php
-									$con = connect();
-									$sql = "SELECT * FROM especialidades  ORDER BY nombrees ASC LIMIT 5";
-									$query  = $con->query($sql);
-									$data =  array();
-									if ($query) {
-										while ($r = $query->fetch_object()) {
-											$data[] = $r;
-										}
-									}
-									?>
-									<?php if (count($data) > 0) : ?>
-										<?php foreach ($data as $d) : ?>
-											<div class="card-list">
-
-												<!-- POR ACA COMENTO O BAJO DATOS DE MYSQL PARA VISUALIZARLO CON LAS CONEXIONES--------  -->
-												<div class="item-list">
-													<div class="info-user ml-3">
-														<div class="username"><?php echo $d->nombrees; ?></div>
-														<div class="status">Especialidades</div>
-													</div>
-												</div>
-											</div>
-										<?php endforeach; ?>
-									<?php else : ?>
-										<p class="alert alert-warning"><strong>No hay datos</strong></p>
-									<?php endif; ?>
-								</div>
-							</div>
-						</div>
+					
 					</div>
 				</div>
 			</div>
@@ -618,7 +546,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 			maxValue: 100,
 			width: 7,
 			text: <?php echo  $total; ?>,
-			colors: ['#f1f1f1', '#FF9E27'],
+			colors: ['#82d386ff', '#b4d84fff'],
 			duration: 400,
 			wrpClass: 'circles-wrp',
 			textClass: 'circles-text',

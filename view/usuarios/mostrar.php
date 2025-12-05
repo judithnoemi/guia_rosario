@@ -528,17 +528,9 @@
                         <button type="submit" class="btn btn-danger btn-xs">Cliente</button>
                      </form>
                         <?php  } ?>                         
-            </td>
-															
-							  
-															
-															
-								
-															
+            </td>				
 										<td>
 											<div class="form-button-action">
-							
-							
 							<button href="#editRowModal=<?php echo $row['id'];?>" class="btn btn-link btn-primary btn-lg" data-toggle="modal"  title="" data-original-title="Edit Task" data-target="#editRowModal<?php echo $row['id']; ?>">
 									<i class="fa fa-edit"></i>
 									
@@ -647,7 +639,7 @@
 			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
 
 			$('#addRowButton').click(function() {
-				$('#add-row').dataTable().fnAddData([
+				$('rgba(142, 177, 177, 1)-row').dataTable().fnAddData([
 					$("#addName").val(),
 					$("#addPosition").val(),
 					$("#addOffice").val(),
@@ -668,7 +660,6 @@
     }).done(function(data){
         window.location.href ='../folder/pacientes.php';
     })
-
 }
 
 // Editar estado inactivo
@@ -694,7 +685,7 @@ if(isset($_POST["agregar"])){
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tarea1";
+$dbname = "universidad";
 
 // Creamos la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -707,7 +698,13 @@ $nombre=$_POST['nombre'];
 $usuario=$_POST['usuario'];
 $email=$_POST['email'];
 $clave=MD5($_POST['clave']);
-$cargo=$_POST['cargo'];
+// 🔥🔥 AQUI EXACTAMENTE SE HACE LO DEL CARGO (1 o 2)
+    $cargo = $_POST['cargo'];  // ← viene del <select> con valor 1 o 2
+
+    // ✔ Validación opcional (evita valores inválidos)
+    if ($cargo != "1" && $cargo != "2") {
+        die("Cargo inválido");
+    }
 
 
 // Realizamos la consulta para saber si coincide con uno de esos criterios
@@ -744,7 +741,8 @@ Swal.fire({
  else
  {
 // Si no hay resultados, ingresamos el registro a la base de datos
-$sql2 = "INSERT INTO usuarios(nombre,usuario,email,clave,cargo)VALUES ('$nombre','$usuario','$email','$clave','$cargo')";
+$sql2 = "INSERT INTO usuarios(nombre,usuario,email,clave,cargo)
+VALUES ('$nombre','$usuario','$email','$clave','$cargo')";
 
 
 if (mysqli_query($conn, $sql2)) {

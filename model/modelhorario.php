@@ -1,25 +1,27 @@
 <?php
 class Modelo{
 
-  private $usuarios;
+  private $horario;
   private $db;
+
   public function __construct(){
-      $this->usuarios=array();
-      $this->db=new PDO('mysql:host=localhost;dbname=universidad',"root","");
+      $this->horario=array();
+      $this->db=new PDO('mysql:host=localhost;dbname=tarea1',"root","");
   }
   public function mostrar($tabla,$condicion){
-      $consulta="SELECT * FROM usuarios";
+      $consulta="SELECT horario.codhor, horario.nomhor, doctor.coddoc, doctor.dnidoc, doctor.nomdoc, doctor.apedoc, doctor.correo, horario.fere FROM horario INNER JOIN doctor ON  horario.coddoc = doctor.coddoc";
+
       $resultado=$this->db->query($consulta);
       while ($tabla=$resultado->fetchAll(PDO::FETCH_ASSOC)) {
-          $this->usuarios[]=$tabla;
+          $this->horario[]=$tabla;
       }
-      return $this->usuarios;
+      return $this->horario;
     }
-    public function  insertar(Modelo $data){
+    public function insertar(Modelo $data){
     try {
-      $query="INSERT INTO usuarios (nombre,usuario,email)VALUES(?,?,?)";
+      $query="INSERT INTO horario (nomhor,coddoc,estado)VALUES(?,?,?)";
 
-      $this->db->prepare($query)->execute(array($data->nombre,$data->usuario,$data->email));
+      $this->db->prepare($query)->execute(array($data->nomhor,$data->coddoc,$data->estado));
 
     }catch (Exception $e) {
 
@@ -36,7 +38,6 @@ class Modelo{
           return false;
       }
   }
-  
   public function eliminar($tabla,$condicion){
       $consulta="DELETE FROM $tabla WHERE $condicion";
       $resultado=$this->db->query($consulta);

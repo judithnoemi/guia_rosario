@@ -9,7 +9,7 @@ class usuarioscontroller{
     function mostrar(){
         $usuarios=new Modelo();
 
-        $dato=$usuarios->mostrar("usuarios", "1");
+        $dato=$usuarios->mostrar("users", "1");
         require_once '../view/usuarios/mostrar.php';
     }
 //INSERTAR

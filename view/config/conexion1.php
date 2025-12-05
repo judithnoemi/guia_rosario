@@ -1,7 +1,7 @@
 <?php
 	$contrasena = '';
 	$usuario = 'root';
-	$nombrebd= 'centro';
+	$nombrebd= 'universidad';
 
 	try {
 		$bd = new PDO(
