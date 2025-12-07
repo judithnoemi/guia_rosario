@@ -1,49 +1,77 @@
 <?php
-	session_start();
-	include_once('../config/dbconect.php');
+session_start();
+include_once('../config/dbconect.php');
 
-	if(isset($_POST['editar'])){
-		$database = new Connection();
-		$db = $database->open();
-		try{
-			$codpaci  = $_GET['codpaci'];
-			$dnipa = $_POST['dnipa'];
-			$nombrep = $_POST['nombrep'];
-			$apellidop = $_POST['apellidop'];
-			$seguro = $_POST['seguro'];
-			$tele = $_POST['tele'];
-			$sexo = $_POST['sexo'];
-			$usuario = $_POST['usuario'];
+if(isset($_POST['editar'])){
+    $database = new Connection();
+    $db = $database->open();
 
-			$comunidad = $_POST['id_comunidad'];
-			$provincia = $_POST['provincia'];
-			$estadocivil = $_POST['estadociv'];
-			$ocupacion = $_POST['ocupacion'];
-			$nacimiento = $_POST['nacimiento'];
-			$departamento = $_POST['departamento'];
-			$barrio = $_POST['zona_barrio'];
-			$domicilio = $_POST['domicilioac'];
-			
-			$sql = "UPDATE pacientes 
-			SET dnipa = '$dnipa',nombrep = '$nombrep',apellidop = '$apellidop',seguro = '$seguro',tele = '$tele',
-			sexo = '$sexo' 
-			,usuario = '$usuario', comunidad_id = '$comunidad', provinciap = '$provincia', estadociv= '$estadocivil', ocupacion='$ocupacion', nacimiento='$nacimiento', departamento='$departamento', zona_barrio='$barrio', domicilioac='$domicilio' 
-			WHERE codpaci = '$codpaci'";
-			//if-else statement in executing our query
-			$_SESSION['message'] = ( $db->exec($sql) ) ? 'Paciente actualizado correctamente' : 'No se puso actualizar el paciente';
+    try{
+        $id = $_POST['id']; // obligatorio
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $ci = $_POST['ci'];
+        $carrera_id = $_POST['carrera_id'];
+        $turno_id = $_POST['turno_id'];
+        $numero = $_POST['numero'];
+        $direccion = $_POST['direccion'];
+        $celular = $_POST['celular'];
+        $fecha = $_POST['fecha'];
+        $procedencia = $_POST['procedencia'];
+        $tipo_beca = $_POST['tipo_beca'];
+        $descuento = $_POST['descuento'];
+        $porcentaje = $_POST['porcentaje'];
+        $n_resolucion = $_POST['resolucion'];
+        $n_expediente = $_POST['n_expediente'];
 
-		}
-		catch(PDOException $e){
-			$_SESSION['message'] = $e->getMessage();
-		}
+        // Prepared statement
+        $sql = "UPDATE estudiantes SET 
+                    nombres = :nombres,
+                    apellidos = :apellidos,
+                    ci = :ci,
+                    carrera_id = :carrera_id,
+                    turno_id = :turno_id,
+                    numero = :numero,
+                    direccion = :direccion,
+                    celular = :celular,
+                    fecha = :fecha,
+                    procedencia = :procedencia,
+                    tipo_beca = :tipo_beca,
+                    descuento = :descuento,
+                    porcentaje = :porcentaje,
+                    n_resolucion = :n_resolucion,
+                    n_expediente = :n_expediente
+                WHERE id = :id";
 
-		//Cerrar la conexión
-		$database->close();
-	}
-	else{
-		$_SESSION['message'] = 'Complete el formulario de edición';
-	}
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':nombres', $nombres);
+        $stmt->bindParam(':apellidos', $apellidos);
+        $stmt->bindParam(':ci', $ci);
+        $stmt->bindParam(':carrera_id', $carrera_id);
+        $stmt->bindParam(':turno_id', $turno_id);
+        $stmt->bindParam(':numero', $numero);
+        $stmt->bindParam(':direccion', $direccion);
+        $stmt->bindParam(':celular', $celular);
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':procedencia', $procedencia);
+        $stmt->bindParam(':tipo_beca', $tipo_beca);
+        $stmt->bindParam(':descuento', $descuento);
+        $stmt->bindParam(':porcentaje', $porcentaje);
+        $stmt->bindParam(':n_resolucion', $n_resolucion);
+        $stmt->bindParam(':n_expediente', $n_expediente);
+        $stmt->bindParam(':id', $id);
 
-	header('location: ../../folder/pacientes.php');
+        $_SESSION['message'] = ($stmt->execute()) ? 'Registro actualizado correctamente' : 'No se pudo actualizar el registro';
 
+    } catch(PDOException $e){
+        $_SESSION['message'] = $e->getMessage();
+    }
+
+    $database->close();
+
+} else {
+    $_SESSION['message'] = 'Complete el formulario de edición';
+}
+
+header('location: ../../folder/estudiantes.php');
 ?>

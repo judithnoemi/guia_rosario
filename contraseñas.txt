@@ -1,0 +1,3 @@
+administrador
+mili = contraseña 12345
+usuarios jaz = contraseña 12345

@@ -17,7 +17,7 @@
 	<title>Usuarios</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon"/>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 	<!-- Fonts and icons -->
 	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
@@ -226,15 +226,15 @@
 							
 						</li>
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#historia">
-								<i class="fas fa-file-medical-alt"></i>
-									<p>Historia Clinica</p>
+								<a data-toggle="collapse" href="#inscripcion">
+							<i class="fa-regular fa-address-card"></i>
+									<p>Inscripciones</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="historia">
+								<div class="collapse" id="inscripcion">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/historia.php">
+											<a href="../../folder/inscripciones.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -242,16 +242,17 @@
 									</ul>
 								</div>
 							</li>
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#dethistoria">
-									<i class="fas fa-file-medical"></i>
-									<p>Detalle Historial Clinico</p>
+
+						<li class="nav-item">
+								<a data-toggle="collapse" href="#estudiantes">
+									<i class="fa-solid fa-graduation-cap"></i>
+									<p>Estudiantes</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="dethistoria">
+								<div class="collapse" id="estudiantes">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/detallehistoria.php">
+											<a href="../../folder/estudiantes.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -263,16 +264,18 @@
 									</ul>
 								</div>
 							</li>
-							<li class="nav-item">
+						
+
+						<li class="nav-item">
 								<a data-toggle="collapse" href="#sidebarLayouts">
-								 <i class="fas fa-tooth"></i>
-								<p>Odontologia</p>
+							<i class="fa-regular fa-address-book"></i>
+								<p>Carreras</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="sidebarLayouts">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/odontologia.php">
+											<a href="../folder/carreras.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -280,134 +283,23 @@
 								</div>
 							</li>
 
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#anti">
-								<i class="fas fa-venus-mars"></i>
-									<p>Anticoncepcion</p>
+						<li class="nav-item">
+								<a data-toggle="collapse" href="#turnos">
+								<i class="fa-solid fa-calendar-days"></i>
+									<p>Turnos</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="anti">
+								<div class="collapse" id="turnos">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/anticoncepcion.php">
+											<a href="../folder/turnos.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
 									</ul>
 								</div>
 							</li>
-
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#base">
-								<i class="fas fa-layer-group"></i>
-								<p>Historiales Clinicos</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="base">
-								<ul class="nav nav-collapse">
-									
-									
-									<li>
-										<a href="../folder/historia.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-									
-									
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#sidebarLayouts">
-								<i class="fas fa-male"></i>
-								<p>Pacientes</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="sidebarLayouts" >
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/pacientes.php" >
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-									
-								
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#forms">
-								<i class="fas fa-user-md"></i>
-								<p>Médicos</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="forms">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/doctor.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#tables">
-								<i class="fas fa-table"></i>
-								<p>Áreas médicas</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/especialidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#calendar">
-								<i class="fas fa-calendar-alt"></i>
-								<p>Horarios</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="calendar">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="horario.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#comunidad">
-							<i class="fas fa-store-alt"></i>
-								<p>Comunidades</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="comunidad">
-								<ul class="nav nav-collapse">
-									<li class="active">
-										<a href="../folder/comunidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-
-								</ul>
-							</div>
-						</li>
-
+                       
 
 						<li class="nav-item active">
 							<a data-toggle="collapse" href="#user">
@@ -466,8 +358,7 @@
 										<a href="#addRowModal" class="btn btn-primary btn-round ml-auto" data-toggle="modal">Nuevo</a>
 										<?php include('AgregarModal.php'); ?>
 									</div>
-									<div class="card-tools">
-											
+									<div class="card-tools">	
 											
 										</div>
 										<div class="card-body">
@@ -486,18 +377,7 @@
 													<th style="width: 10%">Action</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>#</th>
-													<th>Nombre</th>
-													<th>Usuario</th>
-													<th>Correo</th>
-													<th>Cargo</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
-											
-											
+												
 										<tbody>
 					<?php
 						//incluimos el fichero de conexion
@@ -650,31 +530,7 @@
 			});
 		});
 	</script>
-	  	<script>
-	function activo(codpaci)
-{
-	var id=codpaci;
-	$.ajax({
-        type:"GET",
-		url:"../assets/ajax/editar_estado_activo_pacientes.php?id="+id,
-    }).done(function(data){
-        window.location.href ='../folder/pacientes.php';
-    })
-}
-
-// Editar estado inactivo
-function inactivo(codpaci)
-{
-	var id=codpaci;
-	$.ajax({
-		type:"GET",
-		url:"../assets/ajax/editar_estado_inactivo_pacientes.php?id="+id,
-    }).done(function(data){
-        window.location.href ='../folder/pacientes.php';
-    })
-}
-
-	</script>
+	
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 

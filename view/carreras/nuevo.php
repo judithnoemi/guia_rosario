@@ -7,20 +7,16 @@ if(isset($_POST['agregar'])){
 	$db = $database->open();
 	try{
 
-		$codpaci = $_POST['codpaci'];
-		$coddoc = $_POST['coddoc'];
-		$grado_instruccion = $_POST['grado_instruccion'];
-		$fecha = $_POST['fecha'];
-	
-		
-		$diagnostico = $_POST['diagnostico'];
-		$consulta = $_POST['consulta'];
-		$hospital = $_POST['hospital'];
+		$id = $_POST['id'];
+		$nombre= $_POST['nombre'];
+		$semestre= $_POST['semetre'];
+		$descripcion = $_POST['descripcion'];
+		$turno_id = $_POST['turno_id'];
 
-		$sql2 = "INSERT INTO historial (codpac, coddoc,  grado_instruccion,  fecha, diagnostico, consulta, hospital, estado)
-			VALUES ('$codpaci','$coddoc','$hora','$fecha','$grado_instruccion','$diagnostico','$consulta','$hospital','1')";
+		$sql2 = "INSERT INTO carreras (nombre, semestre,  descripcion,  turno_id, WHERE id= '$id')
+			VALUES ('$nombre','$semestre', '$descripcion', $descripcion',''$turno_id')";
 		
-		$_SESSION['message'] = ( $db->exec($sql2) ) ? ' Nueva historia insertada correctamente' : 'No se puso insertar el paciente';
+		$_SESSION['message'] = ( $db->exec($sql2) ) ? ' Nueva historia insertada correctamente' : 'No se puso insertar la carrera';
 	
 	}
 	catch(PDOException $e){
@@ -35,6 +31,6 @@ else{
 	$_SESSION['message'] = 'Llene el formulario';
 }
 
-header('location: ../../folder/historia.php');
+header('location: ../../folder/carreras.php');
 	
 ?>

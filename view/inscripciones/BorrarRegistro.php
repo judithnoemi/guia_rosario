@@ -1,27 +1,34 @@
 <?php
-	session_start();
-	include_once('../config/dbconect.php');
+session_start();
+include_once('../config/dbconect.php');
 
-	if(isset($_GET['idanticoncepcion'])){
-		$database = new Connection();
-		$db = $database->open();
-		try{
-			$sql = "DELETE FROM anticoncepcion WHERE idanticoncepcion = '".$_GET['idanticoncepcion']."'";
-			//if-else statement in executing our query
-			$_SESSION['message'] = ( $db->exec($sql) ) ? ' borrada' : 'Hubo un error al borrar el área';
-		}
-		catch(PDOException $e){
-			$_SESSION['message'] = $e->getMessage();
-		}
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $database = new Connection();
+    $db = $database->open();
 
-		//Cerrar conexión
-		$database->close();
+    try {
+        // Prepared statement para seguridad
+        $stmt = $db->prepare("DELETE FROM inscripcions WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-	}
-	else{
-		$_SESSION['message'] = 'Seleccionar miembro para eliminar primero';
-	}
+        if($stmt->rowCount() > 0){
+            $_SESSION['message'] = "Inscripción borrada correctamente";
+        } else {
+            $_SESSION['message'] = "No se encontró la inscripción para borrar";
+        }
 
-	header('location: ../../folder/anticoncepcion.php');
+    } catch(PDOException $e) {
+        $_SESSION['message'] = "Error al borrar: " . $e->getMessage();
+    }
 
+    $database->close();
+
+} else {
+    $_SESSION['message'] = "Seleccionar inscripción para eliminar primero";
+}
+
+header('Location: ../../folder/inscripciones.php');
+exit;
 ?>

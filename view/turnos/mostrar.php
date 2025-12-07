@@ -1,14 +1,8 @@
 <?php
   session_start();
 
-  // Validamos que exista una session y ademas que el cargo que exista sea igual a 1 (Administrador)
   if(!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 1){
-    /*
-      Para redireccionar en php se utiliza header,
-      pero al ser datos enviados por cabereza debe ejecutarse
-      antes de mostrar cualquier informacion en el DOM es por eso que inserto este
-      codigo antes de la estructura del html, espero haber sido claro
-    */
+   
     header('location: ../login.php');
   }
 
@@ -21,8 +15,7 @@
 	<title>Horarios</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon"/>
-
-	<!-- Fonts and icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
 		WebFont.load({
@@ -92,88 +85,14 @@
 								<i class="fa fa-envelope"></i>
 							</a>
 							<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
-								<li>
-									<div class="dropdown-title d-flex justify-content-between align-items-center">
-										Messages 									
-										<a href="#" class="small">Mark all as read</a>
-									</div>
-								</li>
-								<li>
-									<div class="message-notif-scroll scrollbar-outer">
-										<div class="notif-center">
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="../assets/img/jm_denis.jpg" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Jimmy Denis</span>
-													<span class="block">
-														How are you ?
-													</span>
-													<span class="time">5 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="../assets/img/chadengle.jpg" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Chad</span>
-													<span class="block">
-														Ok, Thanks !
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="../assets/img/mlane.jpg" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Jhon Doe</span>
-													<span class="block">
-														Ready for the meeting today...
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="../assets/img/talha.jpg" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="subject">Talha</span>
-													<span class="block">
-														Hi, Apa Kabar ?
-													</span>
-													<span class="time">17 minutes ago</span> 
-												</div>
-											</a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-bell"></i>
-								<span class="notification">0</span>
-							</a>
-							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-								<li>
-									<div class="dropdown-title">You have 0 new notification</div>
-								</li>
+								
 								<li>
 									
 								</li>
-								<li>
-									<a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a>
-								</li>
+								
 							</ul>
 						</li>
+						
 					
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -192,13 +111,7 @@
 											</div>
 										</div>
 									</li>
-									<li>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">My Profile</a>
-										
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="../cerrarSesion.php">Logout</a>
-									</li>
+									
 								</div>
 							</ul>
 						</li>
@@ -265,15 +178,15 @@
 						</li>
 
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#historia">
-								<i class="fas fa-file-medical-alt"></i>
-									<p>Historia Clinica</p>
+								<a data-toggle="collapse" href="#inscripcion">
+							<i class="fa-regular fa-address-card"></i>
+									<p>Inscripciones</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="historia">
+								<div class="collapse" id="inscripcion">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/historia.php">
+											<a href="../folder/inscripciones.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -283,15 +196,15 @@
 							</li>
 
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#dethistoria">
-									<i class="fas fa-file-medical"></i>
-									<p>Detalle Historial Clinico</p>
+								<a data-toggle="collapse" href="#estudiantes">
+									<i class="fa-solid fa-graduation-cap"></i>
+									<p>Estudiantes</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="dethistoria">
+								<div class="collapse" id="estudiantes">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/detallehistoria.php">
+											<a href="../folder/estudiantes.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -307,14 +220,14 @@
 
 						<li class="nav-item">
 								<a data-toggle="collapse" href="#sidebarLayouts">
-								 <i class="fas fa-tooth"></i>
-								<p>Odontologia</p>
+							<i class="fa-regular fa-address-book"></i>
+								<p>Carreras</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="sidebarLayouts">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/odontologia.php">
+											<a href="../folder/carreras.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -323,111 +236,23 @@
 							</li>
 
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#anti">
-								<i class="fas fa-venus-mars"></i>
-									<p>Anticoncepcion</p>
+								<a data-toggle="collapse" href="#turnos">
+								<i class="fa-solid fa-calendar-days"></i>
+									<p>Turnos</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="anti">
+								<div class="collapse" id="turnos">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/anticoncepcion.php">
+											<a href="../folder/turnos.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
 									</ul>
 								</div>
 							</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#sidebarLayouts">
-								<i class="fas fa-male"></i>
-								<p>Pacientes</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="sidebarLayouts">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/pacientes.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-									
-								
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#forms">
-								<i class="fas fa-user-md"></i>
-								<p>Médicos</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="forms">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/doctor.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#tables">
-								<i class="fas fa-table"></i>
-								<p>Áreas médicas</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="especialidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item active" >
-							<a data-toggle="collapse" href="#calendar">
-								<i class="fas fa-calendar-alt"></i>
-								<p>Horarios</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="calendar">
-								<ul class="nav nav-collapse">
-									<li class="active">
-										<a href="horario.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-								</ul>
-							</div>
-						</li>
-                               
-						<li class="nav-item" >
-							<a data-toggle="collapse" href="#com">
-							<i class="fas fa-store-alt"></i>
-								<p>Comunidades</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="com">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="comunidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-									
-								</ul>
-							</div>
-						</li>
+                       
+							     
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#user">
 								<i class="fas fa-user"></i>
@@ -457,7 +282,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Horarios</h4>
+						<h4 class="page-title">Menu</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="../view/admin/admin.php">
@@ -483,102 +308,64 @@
 										<h4 class="card-title">Mostrar</h4>
 										
 										<a href="#addRowModal" class="btn btn-primary btn-round ml-auto" data-toggle="modal">Nuevo</a>
+										
 										<?php include('AgregarModal.php'); ?>
 									</div>
-									<div class="card-tools">
-											<a href="../view/horario/reporte.php" class="btn btn-info btn-border btn-round btn-sm mr-2">
-												<span class="btn-label">
-													<i class="fa fa-pencil"></i>
-												</span>
-												Export PDF
-											</a>
-											
-										</div>
+									
 										<div class="card-body">
-								
-								
-										<div class="table-responsive">
-										<table id="add-row" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Horario</th>
-													<th>Doctor</th>
-													
-													<th>Fecha</th>
-													<th style="width: 10%">Action</th>
-												</tr>
-											</thead>
-											<tfoot>
-												<tr>
-													<th>#</th>
-													<th>Horario</th>
-													<th>Doctor</th>
-													
-													<th>Fecha</th>
-													<th>Action</th>
-												</tr>
-											</tfoot>
-											
-											
-										  <tbody>
-                          <?php
-                          foreach ($dato as $key => $value){
-                              foreach ($value as $va) { ?>
-                           <tr>
-                              <td><?php echo $va['codhor'];?></td>
-                              <td><?php echo $va['nomhor'];?></td>
-                              <td><?php echo $va['nomdoc'];?>&nbsp;<?php echo $va['apedoc'];?></td>
-                             
-							  <td><?php echo $va ['fere'];?></td>
+								<div class="table-responsive">
+    <table id="add-row" class="display table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th style="width: 10%">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        include_once('../view/config/dbconect.php');
+        $database = new Connection();
+        $db = $database->open();
 
-
-                              <td>
-						<div class="form-button-action">
-											
-						<a href="#editRowModal_<?php echo $va["codhor"]; ?>" title="Editar" data-backdrop="false" class="btn btn-link btn-primary btn-lg" data-toggle="modal"><i class="fa fa-edit"></i></a>
-													
-						<button href="#deleteRowModal=<?php echo $va['codhor'];?>" class="btn btn-link btn-danger btn-lg" 
-						data-toggle="modal"  title="" data-original-title="Delete Task" data-target="#deleteRowModal
-						<?php echo $va['codhor']; ?>">
-														<i class="fa fa-times"></i>
-														
-															</button>
-															
-								</div>
-													</td>
-
-												<?php include('editar.php'); ?>
-								
-												  </tr>
-												  <?php
-												  }
-												  }
-												  ?>
-											</tbody>
-																							
-																							
-											<?php include('AgregarModal.php'); ?>
-											
-											
-										</table>
-						</div>
+        try {
+            $sql = 'SELECT id, nombre, descripcion FROM turnos';
+            foreach ($db->query($sql) as $row) {
+        ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['nombre']; ?></td>
+                <td><?php echo $row['descripcion']; ?></td>
+                <td>
+                    <div class="form-button-action">
+                        <!-- Botón Editar -->
+                       <button href="#editRowModal=<?php echo $row['id'];?>" class="btn btn-link btn-primary btn-lg" data-toggle="modal"  title="" data-original-title="Edit Task" data-target="#editRowModal<?php echo $row['id']; ?>">
+									<i class="fa fa-edit"></i>
 									
-									
-								</div>
-								</div>
-								
-								
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			
-		</div>
-		
-	</div>
+										</button>
+
+                        <!-- Botón Eliminar -->
+                        <button class="btn btn-link btn-danger btn-lg" data-toggle="modal" 
+                                data-target="#deleteRowModal<?php echo $row['id']; ?>" title="Eliminar">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        
+                        <?php include('editar.php'); ?>
+                    </div>
+                </td>
+            </tr>
+        <?php
+            }
+        } catch (PDOException $e) {
+            echo "Error al consultar turnos: " . $e->getMessage();
+        }
+        $database->close();
+        ?>
+        </tbody>
+    </table>
+</div>
+
 	<!--   Core JS Files   -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   	<script src="../assets/js/functions6.js"></script>
@@ -627,7 +414,7 @@
 			});
 
 			// Add Row
-			$('#add-row').DataTable({
+			$('rgba(206, 120, 173, 1)-row').DataTable({
 				"pageLength": 5,
 			});
 
@@ -654,7 +441,7 @@ if(isset($_POST["agregar"])){
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "proyecto_final1";
+$dbname = "universidad";
 
 // Creamos la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -663,15 +450,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
        die("Connection failed: " . $conn->connect_error);
    } 
-$nomhor=$_POST['nomhor'];
-$coddoc=$_POST['coddoc'];
+$nombre=$_POST['nombre'];
+$descripcion=$_POST['descripcion'];
+
 
 // Realizamos la consulta para saber si coincide con uno de esos criterios
-$sql = "select * from horario where codhor='$codhor' ";
+$sql = "select * from turnos where id='$id' ";
 $result = mysqli_query($conn, $sql);
 ?>
-
-
 <?php
  // Validamos si hay resultados
  if(mysqli_num_rows($result)>0)
@@ -689,10 +475,7 @@ Swal.fire({
   text: 'Ya existe el registro a agregar!'
  
 })
-
-
         </script>
-
     <?php
     }
   
@@ -700,9 +483,7 @@ Swal.fire({
  else
  {
 // Si no hay resultados, ingresamos el registro a la base de datos
-$sql2 = "INSERT INTO horario(nomhor,coddoc,estado)VALUES ('$nomhor','$coddoc','1')";
-
-
+$sql2 = "INSERT INTO turnos(nombre,descripcion)VALUES ('$nombre','$descripcion')";
 if (mysqli_query($conn, $sql2)) {
       
        if($sql2){
@@ -717,7 +498,7 @@ Swal.fire({
   showConfirmButton: false,
   timer: 1500
 }).then(function() {
-            window.location = "../folder/horario.php";
+            window.location = "../folder/turnos.php";
         });
         </script>
 

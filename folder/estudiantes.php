@@ -1,6 +1,6 @@
 <?php
-require_once '../controller/pacientescontroller.php';
-$objcusto=new pacientescontroller();
+require_once '../controller/estudiantescontroller.php';
+$objcusto=new estudiantescontroller();
 $op="mostrar";
 if(isset($_REQUEST['op']))
     $op=$_REQUEST['op'];

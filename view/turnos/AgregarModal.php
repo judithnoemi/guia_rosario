@@ -3,8 +3,7 @@
     <div class="modal-dialog">
 	
         <div class="modal-content">
-            <div class="modal-header">
-               
+            <div class="modal-header"> 
                 <center><h4 class="modal-title" id="myModalLabel">Nuevo Registro</h4></center>
             </div>
             <div class="modal-body">
@@ -17,18 +16,14 @@
 						<div class="col-md-6 pr-0">
 							<div class="form-group form-group-default">
 								<label>Nombre</label>
-								<input name="nomhor" required="" type="text" class="form-control" placeholder="Ingrese nombre">
+								<input name="nombre" required="" type="text" class="form-control" placeholder="Ingrese nombre">
 							</div>
 						</div>
 						
-						
 						<div class="col-md-6">
 							<div class="form-group form-group-default">
-								<label>Medicos</label>
-								<select class="form-control" id="doctor" required="" name="coddoc">
-								
-				
-								</select>
+								<label>Descripcion</label>
+								<input name="descripcion" required="" type="text" class="form-control" placeholder="Ingrese descripcion">
 							</div>
 						</div>
 						

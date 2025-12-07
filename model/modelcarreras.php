@@ -1,42 +1,29 @@
 <?php
 class Modelo
 {
-  private $odontologia;
+  private $carreras;
   private $db;
 
   public function __construct()
   {
-    $this->odontologia = array();
-    $this->db = new PDO('mysql:host=localhost;dbname=tarea1', "root", "");
+    $this->carreras = array();
+    $this->db = new PDO('mysql:host=localhost;dbname=universidad', "root", "");
   }
 
   public function mostrar($tabla, $condicion)
   {
     $consulta =
       "SELECT *
-      FROM odontologia
-      INNER JOIN pacientes ON odontologia.codpaci=pacientes.codpaci
-      INNER JOIN doctor ON odontologia.coddocod=doctor.coddoc
-      INNER JOIN especialidades ON especialidades.codespe=doctor.codespe";
+      FROM carreras
+      INNER JOIN turnos ON carreras.turno_id=turnos.id";
 
     $resultado = $this->db->query($consulta);
     while ($tabla = $resultado->fetchAll(PDO::FETCH_ASSOC)) {
-      $this->odontologia[] = $tabla;
+      $this->carreras[] = $tabla;
     }
-    return $this->odontologia;
+    return $this->carreras;
   }
 
-  public function  insertar(Modelo $data)
-  {
-    try {
-    $query="INSERT INTO odontologia (codpaci, coddocod, fecha, registro, detalle, atencion, diagnostico, primeracon, piezaden, mujeresem, mujerespost, medidaspreven, restauraciones, endodoncia, periodoncia, cir_bucalmenor, otrasacc, rx, refycontraref, tratamiento, estado) 
-    VALUES (?, ?, ?,?, ?, ?, ?,?, ?, ?',?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?);";	 
-
-    } catch (Exception $e) {
-
-      die($e->getMessage());
-    }
-  }
 
   public function actualizar($tabla, $data, $condicion)
   {

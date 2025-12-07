@@ -1,56 +1,42 @@
 <?php
-require_once '../model/modelpacientes.php';
-class pacientescontroller{
+require_once '../model/modelturnos.php';
+class turnoscontroller{
 
     public $model;
   public function __construct() {
         $this->model=new Modelo();
     }
     function mostrar(){
-        $pacientes=new Modelo();
+        $turnos=new Modelo();
 
-        $dato=$pacientes->mostrar("pacientes", "1");
-        require_once '../view/pacientes/mostrar.php';
+        $dato=$turnos->mostrar("turnos", "1");
+        require_once '../view/turnos/mostrar.php';
     }
 
 //INSERTAR
   public  function nuevo(){
-        require_once '../view/pacientes/nuevo.php';
+        require_once '../view/turnos/nuevo.php';
     }
     //aca ando haciendo
     public function recibir(){
                 $alm = new Modelo();
-                $alm->dnipa=$_POST['txtdnia'];
-				$alm->nombrep=$_POST['txtnomb'];
-				$alm->apellidop=$_POST['txtapell'];
-				$alm->seguro=$_POST['cbosegu'];
-				$alm->tele=$_POST['txttele'];
-				$alm->sexo=$_POST['cbosex'];
-				$alm->usuario=$_POST['txtusu'];
-				$alm->password=$_POST['txtpass'];
-                $alm->comunidad_id=$_POST['cbocomunidad'];
-                $alm->ocupacion=$_POST['ocupacion'];
-                $alm->estadociv=$_POST['cboestadociv'];
-                $alm->nacimiento=$_POST['txtnacimiento'];
-                $alm->departamento=$_POST['cbodepartamento'];
-                $alm->zona_barrio=$_POST['txtzona_barrio'];
-                $alm->domicilioac=$_POST['txtdomicioac'];
-				$alm->estado=$_POST['cboesta'];
+				$alm->nombre=$_POST['nombre'];
+				$alm->descripcion=$_POST['descripcion'];
+                
                 
 
      $this->model->insertar($alm);
      //-------------
-header("Location: pacientes.php");
+header("Location: turnos.php");
 
           }
 
             //ELIMINAR
             function eliminar(){
-                $codpaci=$_REQUEST['codpaci'];
-                $condicion="codpaci=$codpaci";
+                $id=$_REQUEST['id'];
+                $condicion="id=$id";
                 $pacientes=new Modelo();
-                $dato=$pacientes->eliminar("pacientes", $condicion);
-                header("location:pacientes.php");
+                $dato=$pacientes->eliminar("turnos", $condicion);
+                header("location:turnos.php");
             }
-
     }

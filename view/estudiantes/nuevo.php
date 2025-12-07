@@ -1,60 +1,40 @@
 <?php
-session_start();
-include_once('../config/dbconect.php');
-
 if(isset($_POST['agregar'])){
-	$database = new Connection();
-	$db = $database->open();
-	try{
-		$dnipa = $_POST['dnipa'];
-		$nombrep = $_POST['nombrep'];
-		$apellidop = $_POST['apellidop'];
-		$seguro = $_POST['seguro'];
-		$tele = $_POST['tele'];
-		$sexo = $_POST['sexo'];
-		$comunidad = $_POST['comunidad'];
-		$estadociv = $_POST['estadociv'];
-		$ocupacion = $_POST['ocupacion'];
-		$nacimiento = $_POST['nacimiento'];
-		$departamento = $_POST['departamento'];
-		$zona_barrio = $_POST['zona_barrio'];
-		$domicilioac = $_POST['domicilioac'];
-		$usuario = $_POST['usuario'];
-		$clave = $_POST['clave'];
-		
-		$sql2 = "INSERT INTO customers (dnipa, nombrep, apellidop,seguro,tele,sexo,estadociv,ocupacion,nacimiento,departamento,zona_barrio,domicilioac,usuario,clave,comunidad_id,cargo, estado)
-		 VALUES ('$dnipa', '$nombrep', '$apellidop', '$seguro', '$tele', '$sexo', '$comunidad', '$estadociv', '$ocupacion', '$nacimiento', '$departamento', '$zona_barrio', '$domicilioac', '$usuario', '$clave', '2','1')";
-		
-		$_SESSION['message'] = ( $db->exec($sql2) ) ? ' Nuevo Paciente insertado correctamente' : 'No se puso insertar el paciente';
+    include_once('../view/config/dbconect.php');
+    $database = new Connection();
+    $db = $database->open();
 
-		/*
-		//hacer uso de una declaración preparada para prevenir la inyección de sql
-		$stmt = $db->prepare("INSERT INTO customers (dnipa, nombrep,apellidop,seguro,tele,sexo,usuario,clave,comunidad_id) 
-		VALUES (:dnipa, :nombrep, :apellidop, :seguro, :tele,:sexo,:usuario, :clave,:cargo,:estado,:comunidad_id)");
-		//instrucción if-else en la ejecución de nuestra declaración preparada
-		
-		$_SESSION['message'] = 
-		( $stmt->execute
-			(array
-				(':dnipa' => $_POST['dnipa'] , ':nombrep' => $_POST['nombrep'] , ':apellidop' => $_POST['apellidop'], ':seguro' => $_POST['seguro'], ':tele' => $_POST['tele'], ':sexo' => $_POST['sexo'], ':usuario' => $_POST['usuario'], ':clave' => MD5($_POST['clave']), ':comunidad_id' => $_POST['comunidad_id'])
-			) 
-		) 
-			? 'Paciente guardado correctamente' 
-			: 'Algo salió mal. No se puede agregar miembro';
-		*/	
-	}
-	catch(PDOException $e){
-		$_SESSION['message'] = $e->getMessage();
-	}
+    try {
+        $stmt = $db->prepare("INSERT INTO estudiantes 
+            (nombres, apellidos, ci, carrera_id, turno_id, numero, direccion, celular, fecha, procedencia, tipo_beca, descuento, porcentaje, n_resolucion, n_expediente)
+            VALUES 
+            (:nombres, :apellidos, :ci, :carrera_id, :turno_id, :numero, :direccion, :celular, :fecha, :procedencia, :tipo_beca, :descuento, :porcentaje, :n_resolucion, :n_expediente)");
 
-	//cerrar la conexion
-	$database->close();
+        $stmt->execute([
+            ':nombres' => $_POST['nombres'],
+            ':apellidos' => $_POST['apellidos'],
+            ':ci' => $_POST['ci'],
+            ':carrera_id' => $_POST['carrera_id'],
+            ':turno_id' => $_POST['turno_id'],
+            ':numero' => $_POST['numero'],
+            ':direccion' => $_POST['direccion'],
+            ':celular' => $_POST['celular'],
+            ':fecha' => $_POST['fecha'],
+            ':procedencia' => $_POST['procedencia'],
+            ':tipo_beca' => $_POST['tipo_beca'],
+            ':descuento' => $_POST['descuento'],
+            ':porcentaje' => $_POST['porcentaje'],
+            ':n_resolucion' => $_POST['n_resolucion'],
+            ':n_expediente' => $_POST['n_expediente']
+        ]);
+
+        $_SESSION['message'] = 'Estudiante agregado correctamente';
+
+    } catch(PDOException $e) {
+        $_SESSION['message'] = 'Error al insertar estudiante: ' . $e->getMessage();
+    }
+
+    $database->close();
+    header('location: ../folder/estudiantes.php');
 }
-
-else{
-	$_SESSION['message'] = 'Llene el formulario';
-}
-
-header('location: ../../folder/pacientes.php');
-	
 ?>

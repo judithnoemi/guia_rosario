@@ -16,6 +16,10 @@ if (!isset($_SESSION['cargo']) == 1) {
 	<link rel="icon" href="../../assets/img/logo.png" type="image/x-icon" />
 	<!-- Fonts and icons -->
 	<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+	<!-- CDN Font Awesome Free -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+
 	<script>
 		WebFont.load({
 			google: {
@@ -67,11 +71,9 @@ if (!isset($_SESSION['cargo']) == 1) {
 							<form class="navbar-left navbar-form nav-search mr-md-3">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<button type="submit" class="btn btn-search pr-1">
-											<i class="fa fa-search search-icon"></i>
-										</button>
+										
 									</div>
-									<input type="text" placeholder="Buscar ..." class="form-control">
+									
 								</div>
 							</form>
 						</div>
@@ -81,40 +83,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 									<i class="fa fa-search"></i>
 								</a>
 							</li>
-							<li class="nav-item dropdown hidden-caret">
-								<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fa fa-envelope"></i>
-								</a>
-								<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
-									<li>
-										<div class="dropdown-title d-flex justify-content-between align-items-center">
-											Mensajes
-											<a href="#" class="small">Marcar todo como leido</a>
-										</div>
-									</li>
-									<li>
-									</li>
-									<li>
-										<a class="see-all" href="javascript:void(0);">Ver todos los mensajes<i class="fa fa-angle-right"></i> </a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item dropdown hidden-caret">
-								<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fa fa-bell"></i>
-									<span class="notification">0</span>
-								</a>
-								<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-									<li>
-										<div class="dropdown-title">Tienes 0 notificaciones nuevas</div>
-									</li>
-									<li>
-									</li>
-									<li>
-										<a class="see-all" href="javascript:void(0);">Ver todas las notificaciones<i class="fa fa-angle-right"></i> </a>
-									</li>
-								</ul>
-							</li>
+							
 							<li class="nav-item dropdown hidden-caret">
 								<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 									<div class="avatar-sm">
@@ -205,16 +174,16 @@ if (!isset($_SESSION['cargo']) == 1) {
 								</div>
 							</li>
 
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#historia">
-								<i class="fas fa-file-medical-alt"></i>
-									<p>Historia Clinica</p>
+								<li class="nav-item">
+								<a data-toggle="collapse" href="#ins">
+							<i class="fa-regular fa-address-card"></i>
+									<p>Inscripciones</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="historia">
+								<div class="collapse" id="ins">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/historia.php">
+											<a href="../../folder/inscripciones.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -223,17 +192,16 @@ if (!isset($_SESSION['cargo']) == 1) {
 								</div>
 							</li>
 
-                       
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#dethistoria">
-									<i class="fas fa-file-medical"></i>
-									<p>Detalle Historial Clinico</p>
+						<li class="nav-item">
+								<a data-toggle="collapse" href="#estudiantes">
+									<i class="fa-solid fa-graduation-cap"></i>
+									<p>Estudiantes</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="dethistoria">
+								<div class="collapse" id="estudiantes">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/detallehistoria.php">
+											<a href="../../folder/estudiantes.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -245,19 +213,18 @@ if (!isset($_SESSION['cargo']) == 1) {
 									</ul>
 								</div>
 							</li>
+						
 
-							
-
-							<li class="nav-item">
+						<li class="nav-item">
 								<a data-toggle="collapse" href="#sidebarLayouts">
-								 <i class="fas fa-tooth"></i>
-								<p>Odontologia</p>
+							<i class="fa-regular fa-address-book"></i>
+								<p>Carreras</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="sidebarLayouts">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/odontologia.php">
+											<a href="../../folder/carreras.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -265,108 +232,23 @@ if (!isset($_SESSION['cargo']) == 1) {
 								</div>
 							</li>
 
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#anti">
-								<i class="fas fa-venus-mars"></i>
-									<p>Anticoncepcion</p>
+						<li class="nav-item">
+								<a data-toggle="collapse" href="#turnos">
+								<i class="fa-solid fa-calendar-days"></i>
+									<p>Turnos</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="anti">
+								<div class="collapse" id="turnos">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/anticoncepcion.php">
+											<a href="../../folder/turnos.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
 									</ul>
 								</div>
 							</li>
-
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#pac">
-									<i class="fas fa-male"></i>
-									<p>Pacientes</p>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse" id="pac">
-									<ul class="nav nav-collapse">
-										<li>
-											<a href="../../folder/pacientes.php">
-												<span class="sub-item">Mostrar</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#forms">
-									<i class="fas fa-user-md"></i>
-									<p>Médicos</p>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse" id="forms">
-									<ul class="nav nav-collapse">
-										<li>
-											<a href="../../folder/doctor.php">
-												<span class="sub-item">Mostrar</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#tables">
-									<i class="fas fa-table"></i>
-									<p>Áreas médicas</p>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse" id="tables">
-									<ul class="nav nav-collapse">
-										<li>
-											<a href="../../folder/especialidades.php">
-												<span class="sub-item">Mostrar</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#calendar">
-									<i class="fas fa-calendar-alt"></i>
-									<p>Horarios</p>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse" id="calendar">
-									<ul class="nav nav-collapse">
-										<li>
-											<a href="../../folder/horario.php">
-												<span class="sub-item">Mostrar</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-
-							<li class="nav-item">
-								<a data-toggle="collapse" href="#com">
-								<i class="fas fa-store-alt"></i>
-									<p>Comunidades</p>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse" id="com">
-									<ul class="nav nav-collapse">
-										<li>
-											<a href="../../folder/comunidades.php">
-												<span class="sub-item">Mostrar</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-
+                       
 							<li class="nav-item">
 								<a data-toggle="collapse" href="#user">
 									<i class="fas fa-user"></i>
@@ -410,7 +292,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-1"></div>
-											<h6 class="fw-bold mt-3 mb-0">Pacientes</h6>
+											<h6 class="fw-bold mt-3 mb-0">Estudiantes</h6>
 											<?php
 											require_once "../config/conexion1.php";
 											$sql = "SELECT COUNT(*) total FROM estudiantes";
@@ -421,7 +303,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-2"></div>
-											<h6 class="fw-bold mt-3 mb-0">Doctores</h6>
+											<h6 class="fw-bold mt-3 mb-0">Carreras</h6>
 											<?php
 											require_once "../config/conexion1.php";
 											$sql = "SELECT COUNT(*) total FROM carreras";
@@ -432,7 +314,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-3"></div>
-											<h6 class="fw-bold mt-3 mb-0">Historial Clinico</h6>
+											<h6 class="fw-bold mt-3 mb-0">Turnos</h6>
 											<?php
 											require_once "../config/conexion1.php";
 											$sql = "SELECT COUNT(*) total FROM turnos";
@@ -450,7 +332,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 						<div class="col-md-4">
 							<div class="card">
 								<div class="card-body">
-									<div class="card-title fw-mediumbold">Nuevos pacientes</div>
+									<div class="card-title fw-mediumbold">Nuevos Estudiantes</div>
 
 									<?php
 									function connect()
@@ -458,7 +340,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 										return new mysqli("localhost", "root", "", "universidad");
 									}
 									$con = connect();
-									$sql = "SELECT * FROM estudiantes ORDER BY apellidop ASC LIMIT 5";
+									$sql = "SELECT * FROM estudiantes ORDER BY apellidos ASC LIMIT 5";
 									$query  = $con->query($sql);
 									$data =  array();
 									if ($query) {
@@ -476,7 +358,7 @@ if (!isset($_SESSION['cargo']) == 1) {
 														<img src="../../assets/img/avatar.png" alt="..." class="avatar-img rounded-circle">
 													</div>
 													<div class="info-user ml-3">
-														<div class="username"><?php echo $d->apellidop; ?></div>
+														<div class="username"><?php echo $d->apellidos; ?></div>
 														<div class="status">Pacientes</div>
 													</div>
 												</div>
@@ -488,9 +370,89 @@ if (!isset($_SESSION['cargo']) == 1) {
 								</div>
 							</div>
 						</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<div class="card-title fw-mediumbold">Nuevas Carreras</div>
 
+<?php
+$con = connect();
+$sql = "SELECT * FROM carreras   ORDER BY nombre ASC LIMIT 5";
+$query  =$con->query($sql);
+$data =  array();
+if($query){
+    while($r = $query->fetch_object()){
+        $data[] = $r;
+    }
+}
+?>
+<?php if(count($data)>0):?>
+	<?php foreach($data as $d):?>
+	<div class="card-list">
+
+<!-- POR ACA COMENTO O BAJO DATOS DE MYSQL PARA VISUALIZARLO CON LAS CONEXIONES--------  -->
+<div class="item-list">
+<div class="avatar">
+<img src="../../assets/img/avatar.png" alt="..." class="avatar-img rounded-circle">
+</div>
+<div class="info-user ml-3">
+<div class="username"><?php echo $d->nombre; ?></div>
+<div class="status">Carreras</div>
+</div>
+</div>
+</div>
+<?php endforeach; ?>
+<?php else:?>
+<p class="alert alert-warning"><strong>No hay datos</strong></p>
+<?php endif; ?> 
+</div>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<div class="card-title fw-mediumbold">Nuevas incripciones</div>
+
+<?php
+$con = connect();
+$sql = "SELECT * FROM turnos ORDER BY nombre ASC LIMIT 5";
+$query  =$con->query($sql);
+$data =  array();
+if($query){
+    while($r = $query->fetch_object()){
+        $data[] = $r;
+    }
+}
+?>
+<?php if(count($data)>0):?>
+	<?php foreach($data as $d):?>
+	<div class="card-list">
+
+<div class="item-list">
+<div class="avatar">
+<img src="../../assets/img/avatar.png" alt="..." class="avatar-img rounded-circle">
+</div>
+<div class="info-user ml-3">
+<div class="username"><?php echo $d->nombre; ?></div>
+<div class="status">Turnos</div>
+</div>
+</div>
+</div>
+<?php endforeach; ?>
+<?php else:?>
+<p class="alert alert-warning"><strong>No hay datos</strong></p>
+<?php endif; ?> 
+</div>
+</div>
+</div>
 					
 					</div>
+
+					
+
+					
 				</div>
 			</div>
 		</div>

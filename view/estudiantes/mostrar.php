@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Validamos que exista una sesión y además que el cargo sea igual a 1 o 3
-if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo'] != 3)) {
+if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 )) {
     header('location: ../login.php');
     exit; // Asegúrate de terminar el script después de redirigir
 }
@@ -14,7 +14,7 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 	<title>Pacientes</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="../assets/img/icon.ico" type="image/x-icon" />
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 	<!-- Fonts and icons -->
 	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
@@ -209,15 +209,15 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 						</li>
 
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#historia">
-								<i class="fas fa-file-medical-alt"></i>
-									<p>Historia Clinica</p>
+								<a data-toggle="collapse" href="#inscripcion">
+							<i class="fa-regular fa-address-card"></i>
+									<p>Inscripciones</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="historia">
+								<div class="collapse" id="inscripcion">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../folder/historia.php">
+											<a href="../folder/inscripciones.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -225,37 +225,36 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 									</ul>
 								</div>
 							</li>
+
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#dethistoria">
-									<i class="fas fa-file-medical"></i>
-									<p>Detalle Historial Clinico</p>
+								<a data-toggle="collapse" href="#estudiantes">
+									<i class="fa-solid fa-graduation-cap"></i>
+									<p>Estudiantes</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="dethistoria">
+								<div class="collapse" id="estudiantes">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../folder/detallehistoria.php">
+											<a href="../folder/estudiantes.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
-										<li>
-											<a href="../../view/detallehistoria/mostrarbusqueda.php">
-												<span class="sub-item">POR FECHAS</span>
-											</a>
-										</li>	
+										
 									</ul>
 								</div>
 							</li>
+						
+
 						<li class="nav-item">
 								<a data-toggle="collapse" href="#sidebarLayouts">
-								 <i class="fas fa-tooth"></i>
-								<p>Odontologia</p>
+							<i class="fa-regular fa-address-book"></i>
+								<p>Carreras</p>
 									<span class="caret"></span>
 								</a>
 								<div class="collapse" id="sidebarLayouts">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../folder/odontologia.php">
+											<a href="../folder/carreras.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
@@ -264,108 +263,22 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 							</li>
 
 						<li class="nav-item">
-								<a data-toggle="collapse" href="#anti">
-								<i class="fas fa-venus-mars"></i>
-									<p>Anticoncepcion</p>
+								<a data-toggle="collapse" href="#turnos">
+								<i class="fa-solid fa-calendar-days"></i>
+									<p>Turnos</p>
 									<span class="caret"></span>
 								</a>
-								<div class="collapse" id="anti">
+								<div class="collapse" id="turnos">
 									<ul class="nav nav-collapse">
 										<li>
-											<a href="../../folder/anticoncepcion.php">
+											<a href="../folder/turnos.php">
 												<span class="sub-item">Mostrar</span>
 											</a>
 										</li>
 									</ul>
 								</div>
 							</li>
-						<li class="nav-item active">
-							<a data-toggle="collapse" href="#pac">
-								<i class="fas fa-male"></i>
-								<p>Pacientes</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="pac">
-								<ul class="nav nav-collapse">
-									<li class="active">
-										<a href="../folder/pacientes.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#forms">
-								<i class="fas fa-user-md"></i>
-								<p>Médicos</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="forms">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../folder/doctor.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#tables">
-								<i class="fas fa-table"></i>
-								<p>Áreas médicas</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="especialidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#calendar">
-								<i class="fas fa-calendar-alt"></i>
-								<p>Horarios</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="calendar">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="horario.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-
-								</ul>
-							</div>
-						</li>
-
-
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#com">
-							<i class="fas fa-store-alt"></i>
-								<p>Comunidades</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="com">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="comunidades.php">
-											<span class="sub-item">Mostrar</span>
-										</a>
-									</li>
-
-								</ul>
-							</div>
-						</li>
-
+                       
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#user">
 								<i class="fas fa-user"></i>
@@ -395,7 +308,7 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Pacientes</h4>
+						<h4 class="page-title">Estudiantes</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="../view/admin/admin.php">
@@ -424,127 +337,78 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 										<a href="#addRowModal" class="btn btn-primary btn-round ml-auto" data-toggle="modal">Nuevo</a>
 										<?php include('AgregarModal.php'); ?>
 									</div>
-									<div class="card-tools">
-										<a href="../view/pacientes/reporte.php" class="btn btn-info btn-border btn-round btn-sm mr-2">
-											<span class="btn-label">
-												<i class="fa fa-pencil"></i>
-											</span>
-											Export PDF
-										</a>
-
-									</div>
+									
 									<div class="card-body">
 										<div class="table-responsive">
 											<table id="add-row" class="display table table-striped table-hover">
 												<thead>
 													<tr>
 														<th>#</th>
-														<th>CI</th>
 														<th>Nombres</th>
 														<th>Apellidos</th>
-														<th>Seguro</th>
-														<th>Teléfono</th>
-														<th>Sexo</th>
-														<th>Comunidad</th>
-														<th>Provincia</th>
-														<th>Estado_Civil</th>
-														<th>Ocupacion</th>
-														<th>Nacimiento</th>
-														<th>Departamento</th>
-														<th>Zona_Barrio</th>
-														<th>Domicilio_Actual</th>
-														<th>Estado</th>
-
-
+														<th>C.I.</th>
+														<th>Carrera</th>
+														<th>Modalidad</th>
+														<th>Fecha</th>
 														<th style="width: 10%">Action</th>
 													</tr>
 												</thead>
-												<tfoot>
-													<tr>
-														<th>#</th>
-														<th>CI</th>
-														<th>Nombres</th>
-														<th>Apellidos</th>
-														<th>Seguro</th>
-														<th>Teléfono</th>
-														<th>Sexo</th>
-														<th>Comunidad</th>
-														<th>Provincia</th>
-														<th>Estado Civil</th>
-														<th>Ocupacion</th>
-														<th>Nacimiento</th>
-														<th>Departamento</th>
-														<th>Zona Barrio</th>
-														<th>Domicilio Actual</th>
-														<th>Estado</th>
-
-														<th>Actiones</th>
-													</tr>
-												</tfoot>
-
-
-												<tbody>
-													<?php
+												
+													<tbody>
+														<?php
 													//incluimos el fichero de conexion
 													include_once('../view/config/dbconect.php');
-
 													$database = new Connection();
 													$db = $database->open();
 													try {
-														$sql = 'SELECT pacientes.codpaci, pacientes.dnipa, pacientes.nombrep, pacientes.apellidop, pacientes.seguro, pacientes.tele, pacientes.sexo, pacientes.usuario, pacientes.clave, pacientes.cargo, pacientes.estado, comunidad.nombre_comunidad AS nombre_comunidad, comunidad.provincia AS provincia, pacientes.estadociv, pacientes.ocupacion, pacientes.nacimiento, pacientes.departamento, pacientes.zona_barrio, pacientes.domicilioac
-																FROM pacientes
-																INNER JOIN comunidad ON pacientes.comunidad_id =comunidad.id_comunidad';
-														foreach ($db->query($sql) as $row) {
-													?>
+$sql = "SELECT 
+            estudiantes.id,
+            estudiantes.nombres,
+            estudiantes.apellidos,
+            estudiantes.ci,
+            carreras.id AS carrera_id,
+            carreras.nombre AS carrera_nombre,
+            turnos.id AS turno_id,
+            turnos.nombre AS turno_nombre,
+            estudiantes.fecha
+        FROM estudiantes
+        LEFT JOIN carreras ON estudiantes.carrera_id = carreras.id
+        LEFT JOIN turnos ON estudiantes.turno_id = turnos.id";
+
+		foreach ($db->query($sql) as $row) {
+							?>
 															<tr>
-																<td><?php echo $row['codpaci']; ?></td>
-																<td><?php echo $row['dnipa']; ?></td>
-																<td><?php echo $row['nombrep']; ?></td>
-																<td><?php echo $row['apellidop']; ?></td>
-																<td><?php echo $row['seguro']; ?></td>
-																<td><?php echo $row['tele']; ?></td>
-																<td><?php echo $row['sexo']; ?></td>
-																<td><?php echo $row['nombre_comunidad']; ?></td>
-																<td><?php echo $row['provincia']; ?></td>
-																<td><?php echo $row['estadociv']; ?></td>
-																<td><?php echo $row['ocupacion']; ?></td>
-																<td><?php echo $row['nacimiento']; ?></td>
-																<td><?php echo $row['departamento']; ?></td>
-																<td><?php echo $row['zona_barrio']; ?></td>
-																<td><?php echo $row['domicilioac']; ?></td>
+														 <td><?= $row['id']; ?></td>
+        <td><?= $row['nombres']; ?></td>
+        <td><?= $row['apellidos']; ?></td>
+        <td><?= $row['ci']; ?></td>
+       <td><?php echo $row['carrera_nombre']; ?></td>
+       <td><?php echo $row['turno_nombre']; ?></td>
+        <td><?= $row['fecha']; ?></td>
+       
 
 
-																<td>
-																	<?php if ($row['estado'] == 1) { ?>
-																		<form method="get" action="javascript:activo('<?php echo $row['codpaci']; ?>')">
-																			<button type="submit" class="btn btn-success btn-xs">Activo</button>
-																		</form>
-
-																	<?php  } else { ?>
-																		<form method="get" action="javascript:inactivo('<?php echo $row['codpaci']; ?>')">
-																			<button type="submit" class="btn btn-danger btn-xs">Inactivo</button>
-																		</form>
-																	<?php  } ?>
-																</td>
 																<td>
 
 																	<div class="form-button-action">
-																		<button href="#editRowModal=<?php echo $row['codpaci']; ?>" class="btn btn-link btn-primary btn-lg" data-toggle="modal" title="" data-original-title="Edit Task" data-target="#editRowModal<?php echo $row['codpaci']; ?>">
-																			<i class="fa fa-edit"></i>
-																		</button>
-																		
-																		<button href="#PassRowModal=<?php echo $row['codpaci']; ?>" class="btn btn-link btn-primary btn-lg" data-toggle="modal" title="" data-original-title="Pass Task" data-target="#PassRowModal<?php echo $row['codpaci']; ?>">
-																			<i class="fa fa-key"></i>
-																		</button>
+																	 <div class="form-button-action">
+                 <!-- Botón Editar -->
+                     <button type="button" class="btn btn-link btn-primary btn-lg" 
+        data-toggle="modal" 
+        data-target="#editRowModal<?php echo $row['id']; ?>" 
+        title="Editar">
+    <i class="fa fa-edit"></i>
+</button>
 
-																		<button href="#deleteRowModal=<?php echo $row['codpaci']; ?>" class="btn btn-link btn-danger btn-lg" data-toggle="modal" title="" data-original-title="Delete Task" data-target="#deleteRowModal<?php echo $row['codpaci']; ?>">
-																			<i class="fa fa-times"></i>
-																		</button>
 
-																		<!-- Ver detalles -->
-																		<button href="#verDetallesModal<?php $row['codpaci']?>" class="btn btn-link btn-dark btn-lg" data-toggle="modal" title="Ver Detalles" data-original-title="Ver Detalles" data-target="#verDetallesModal<?php echo $row['codpaci']; ?>">
-																			<i class="fa fa-eye"></i>
-																		</button>
+                        <!-- Botón Eliminar -->
+                        <button class="btn btn-link btn-danger btn-lg" data-toggle="modal" 
+                                data-target="#deleteRowModal<?php echo $row['id']; ?>" title="Eliminar">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        
+            </div>
+        </td>
 
 																		<?php include('editar.php'); ?>
 																	</div>
@@ -560,8 +424,7 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 													$database->close();
 													?>
 												</tbody>
-											</table><?php
-													?>
+											</table>
 										</div>
 									</div>
 								</div>
@@ -637,27 +500,6 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 	</script>
 	
 
-	<script>
-		function activo(codpaci) {
-			var id = codpaci;
-			$.ajax({
-				type: "GET",
-				url: "../assets/ajax/editar_estado_activo_pacientes.php?id=" + id,
-			}).done(function(data) {
-				window.location.href = '../folder/pacientes.php';
-			})
-		}
-
-		// Editar estado inactivo
-		function inactivo(codpaci) {
-			var id = codpaci;
-			$.ajax({
-				type: "GET",
-				url: "../assets/ajax/editar_estado_inactivo_pacientes.php?id=" + id,
-			}).done(function(data) {
-				window.location.href = '../folder/pacientes.php';
-			})
-		}
 	</script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -669,7 +511,7 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "tarea1";
+		$dbname = "universidad";
 
 		// Creamos la conexión
 		$conn = new mysqli($servername, $username, $password, $dbname);
@@ -678,91 +520,78 @@ if (!isset($_SESSION['cargo']) || ($_SESSION['cargo'] != 1 && $_SESSION['cargo']
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$dnipa = $_POST['dnipa'];
-		$nombrep = $_POST['nombrep'];
-		$apellidop = $_POST['apellidop'];
-		$seguro = $_POST['seguro'];
-		$tele = $_POST['tele'];
-		$sexo = $_POST['sexo'];
-		$comunidad = $_POST['id_comunidad'];
-		$provincia = $_POST['provinciapac'];
-		$estadociv = $_POST['estadociv'];
-		$ocupacion = $_POST['ocupacion'];
-		$nacimiento = $_POST['nacimiento'];
-		$departamento = $_POST['departamento'];
-		$zona_barrio = $_POST['zona_barrio'];
-		$domicilioac = $_POST['domicilioac'];
-		$usuario = $_POST['usuario'];
-		$clave = MD5($_POST['clave']);
+		
+        $nombres = $_POST ['nombres']; 
+        $apellidos = $_POST ['apellidos']; 
+        $ci = $_POST ['ci'];
+        $carrera_id = $_POST ['carrera_id']; 
+		 $turno_id = $_POST ['turno_id']; 
+        $numero= $_POST ['numero']; 
+        $direccion = $_POST ['direccion']; 
+        $celular = $_POST ['celular']; 
+        $fecha = $_POST ['fecha']; 
+        $procedencia = $_POST ['procedencia']; 
+        $tipo_beca= $_POST ['tipo_beca']; 
+        $descuento = $_POST ['descuento']; 
+        $porcentaje = $_POST ['porcentaje']; 
+        $n_resolucion = $_POST ['n_resolucion']; 
+        $n_expedinte  = $_POST ['n_expediente']; 
+       
 
 		// Realizamos la consulta para saber si coincide con uno de esos criterios
-		$sql = "select * from pacientes where dnipa='$dnipa' or usuario='$usuario' or tele='$tele'";
-		$result = mysqli_query($conn, $sql);
-	?>
 
-		<?php
-		// Validamos si hay resultados
-		if (mysqli_num_rows($result) > 0) {
-			// Si es mayor a cero imprimimos que ya existe el usuario
+$result = mysqli_query($conn, $sql);
 
-			if ($result) {
-		?>
-				<script type="text/javascript">
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: 'Ya existe el registro a agregar!'
+if (!$result) {
+    die("Error en la consulta SQL: " . mysqli_error($conn));
+}
 
-					})
-				</script>
-				<?php
-			}
-		} else {
+if (mysqli_num_rows($result) > 0) {
+    // hay resultados
+} else {
+    // no hay resultados
+}
+
 			// Si no hay resultados, ingresamos el registro a la base de datos
-			$sql2 = "INSERT INTO pacientes (dnipa, nombrep, apellidop, seguro, tele, sexo, usuario, clave, cargo, estado, comunidad_id, provinciap, estadociv, ocupacion, nacimiento, departamento, zona_barrio, domicilioac) 
-VALUES ('$dnipa', '$nombrep', '$apellidop', '$seguro', '$tele', '$sexo', '$usuario', '$clave', '2', '1', '$comunidad', '$provincia', '$estadociv', '$ocupacion', '$nacimiento', '$departamento', '$zona_barrio', '$domicilioac');";
+$sql2 = "INSERT INTO estudiantes 
+    (nombres, apellidos, ci, carrera_id, turno_id, numero, direccion, celular, fecha, procedencia, tipo_beca, descuento, porcentaje, n_resolucion, n_expediente)
+VALUES 
+('$nombres','$apellidos','$ci','$carrera_id','$turno_id','$numero', '$direccion', '$celular', '$fecha', '$procedencia', '$tipo_beca', '$descuento', '$porcentaje', '$n_resolucion', '$n_expedinte')";
 
-			if (mysqli_query($conn, $sql2)) {
 
-				if ($sql2) {
-				?>
 
-					<script type="text/javascript">
-						Swal.fire({
-							position: 'top-end',
-							icon: 'success',
-							title: 'Agregado correctamente',
-							showConfirmButton: false,
-							timer: 1500
-						}).then(function() {
-							window.location = "../folder/pacientes.php";
-						});
-					</script>
+	if (mysqli_query($conn, $sql2)) {
+        // Éxito
+        ?>
+        <script type="text/javascript">
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Agregado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(function() {
+                window.location = "../folder/estudiantes.php";
+            });
+        </script>
+        <?php
+    } else {
+        // Error al insertar
+        ?>
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo guardar! <?= mysqli_error($conn) ?>'
+            })
+        </script>
+        <?php
+    }
 
-				<?php
-				} else {
-				?>
-					<script type="text/javascript">
-						Swal.fire({
-							icon: 'error',
-							title: 'Oops...',
-							text: 'No se pudo guardar!'
-
-						})
-					</script>
-	<?php
-
-				}
-			} else {
-
-				echo "Error: " . $sql2 . "" . mysqli_error($conn);
-			}
-		}
-		// Cerramos la conexión
-		$conn->close();
-	}
-	?>
-
+    // Cerramos la conexión
+    $conn->close();
+}
+?>
 	
 </body>
 

@@ -2,11 +2,11 @@
 	session_start();
 	include_once('../config/dbconect.php');
 
-	if(isset($_GET['idhistoriain'])){
+	if(isset($_GET['id'])){
 		$database = new Connection();
 		$db = $database->open();
 		try{
-			$sql = "DELETE FROM historial WHERE idhistoriain = '".$_GET['idhistoriain']."'";
+			$sql = "DELETE FROM carreras WHERE id= '".$_GET['id']."'";
 			//if-else statement in executing our query
 			$_SESSION['message'] = ( $db->exec($sql) ) ? ' borrada' : 'Hubo un error al borrar el área';
 		}
@@ -22,6 +22,6 @@
 		$_SESSION['message'] = 'Seleccionar miembro para eliminar primero';
 	}
 
-	header('location: ../../folder/historia.php');
+	header('location: ../../folder/carreras.php');
 
 ?>

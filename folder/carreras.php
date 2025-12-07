@@ -1,6 +1,6 @@
 <?php
-require_once '../controller/anticoncepcioncontroller.php';
-$objapp=new anticoncepcioncontroller();
+require_once '../controller/carrerascontroller.php';
+$objapp=new carrerascontroller();
 $op="mostrar";
 if(isset($_REQUEST['op']))
     $op=$_REQUEST['op'];

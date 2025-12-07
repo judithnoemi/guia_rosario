@@ -1,6 +1,6 @@
 <?php
-require_once '../controller/horariocontroller.php';
-$objhorario=new horariocontroller();
+require_once '../controller/inscripcionescontroller1.php';
+$objhorario=new inscripcionescontroller();
 $op="mostrar";
 if(isset($_REQUEST['op']))
     $op=$_REQUEST['op'];
@@ -20,4 +20,6 @@ if(isset($_REQUEST['op']))
             $objhorario->recibir();
             elseif($op=="eliminar")
                 $objhorario->eliminar();
+            elseif($op=="generarPDF")
+                $objinscripcion->generarPDF($_REQUEST['id']);
 ?>

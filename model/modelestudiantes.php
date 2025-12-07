@@ -1,37 +1,41 @@
 <?php
 class Modelo{
 
-  private $pacientes;
+  private $estudiantes;
   private $db;
 
   public function __construct(){
-      $this->pacientes=array();
-      $this->db=new PDO('mysql:host=localhost;dbname=tarea1',"root","");
+      $this->estudiantes=array();
+      $this->db=new PDO('mysql:host=localhost;dbname=universidad',"root","");
   }
-  public function mostrar($tabla,$condicion){
-    $consulta="SELECT pacientes.codpaci, pacientes.dnipa, pacientes.nombrep,pacientes.apellidop,pacientes.seguro, pacientes.tele, pacientes.usuario,
-    pacientes.clave, pacientes.cargo, pacientes.estado, comunidad.nombre_comunidad, comunidad.provincia, pacientes.estadociv, pacientes.ocupacion,
-    pacientes.nacimiento, pacientes.departamento, pacientes.zona_barrio, pacientes.domicilioac
-     FROM pacientes 
-    INNER JOIN comunidad ON pacientes.comunidad_id = comunidad.id_comunidad";
+public function mostrar($tabla,$condicion){
 
-      $resultado=$this->db->query($consulta);
-      while ($tabla=$resultado->fetchAll(PDO::FETCH_ASSOC)) {
-          $this->pacientes[]=$tabla;
-      }
-      return $this->pacientes;     
-    }
-    public function  insertar(Modelo $data){
-    try {
-      $query="INSERT INTO pacientes (dnipa,nombrep,apellidop,seguro,tele,sexo,usuario,password,comunidad_id,estadociv,nacimiento,departamento,zona_barrio,domicilioac,estado)VALUES(?,?,?,?,?,?,?,?,?)";
+    $consulta = "SELECT 
+        estudiantes.id AS estudiante_id,
+        estudiantes.nombres,
+        estudiantes.apellidos,
+        estudiantes.ci,
+        carreras.id AS carrera_id,
+        carreras.nombre AS carrera_nombre,
+        estudiantes.numero,
+        estudiantes.direccion,
+        estudiantes.celular,
+        estudiantes.fecha,
+        estudiantes.procedencia,
+        estudiantes.tipo_beca,
+        estudiantes.descuento,
+        estudiantes.n_resolucion,
+        estudiantes.n_expediente,
+        turnos.nombre AS turno_nombre
+    FROM estudiantes
+    INNER JOIN carreras ON estudiantes.carrera_id = carreras.id
+    INNER JOIN turnos   ON estudiantes.turno_id = turnos.id";
 
-      //$this->db->prepare($query)->execute(array($data->nombrees));
+    $resultado = $this->db->query($consulta);
+    return $resultado->fetchAll(PDO::FETCH_ASSOC);
+}
 
-    }catch (Exception $e) {
-
-      die($e->getMessage());
-    }
-    }
+   
   public function actualizar($tabla,$data,$condicion){
       $consulta="UPDATE $tabla SET $data WHERE $condicion";
       $resultado=$this->db->query($consulta);

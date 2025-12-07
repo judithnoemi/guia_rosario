@@ -2,11 +2,11 @@
 	session_start();
 	include_once('../config/dbconect.php');
 
-	if(isset($_GET['codpaci'])){
+	if(isset($_GET['id'])){
 		$database = new Connection();
 		$db = $database->open();
 		try{
-			$sql = "DELETE FROM pacientes WHERE codpaci  = '".$_GET['codpaci']."'";
+			$sql = "DELETE FROM estudiantes WHERE id  = '".$_GET['id']."'";
 			//if-else statement in executing our query
 			$_SESSION['message'] = ( $db->exec($sql) ) ? 'Paciente Borrado' : 'Hubo un error al borrar el área';
 		}
@@ -22,6 +22,6 @@
 		$_SESSION['message'] = 'Seleccionar miembro para eliminar primero';
 	}
 
-	header('location: ../../folder/pacientes.php');
+	header('location: ../../folder/estudiantes.php');
 
 ?>

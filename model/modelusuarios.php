@@ -15,17 +15,7 @@ class Modelo{
       }
       return $this->usuarios;
     }
-    public function  insertar(Modelo $data){
-    try {
-      $query="INSERT INTO usuarios (nombre,usuario,email)VALUES(?,?,?)";
-
-      $this->db->prepare($query)->execute(array($data->nombre,$data->usuario,$data->email));
-
-    }catch (Exception $e) {
-
-      die($e->getMessage());
-    }
-    }
+  
   
   public function actualizar($tabla,$data,$condicion){
       $consulta="UPDATE $tabla SET $data WHERE $condicion";

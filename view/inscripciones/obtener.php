@@ -1,42 +1,49 @@
 <?php
-	session_start();
-	include_once('../config/dbconect.php');
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-	if(isset($_POST['editar'])){
-		$database = new Connection();
-		$db = $database->open();
-		try{
-			$idanticoncepcion = $_GET['idanticoncepcion'];
-			$codpaci = $_POST['codpaci'];
-			$coddoc = $_POST['coddoc'];
-			$fechaan = $_POST['fechaan'];
-			$registroan = $_POST['registroan'];
-			$detallean = $_POST['detallean'];
-			$atencionan = $_POST['atencionan'];
-			$orientacion = $_POST['orientacion'];
-			$metodosantimode = $_POST['metodosantimode'];
-			$insumos = $_POST['insumos'];
-			$metodosnat = $_POST['metodosnat'];
-			$muestraspaptom = $_POST['muestraspaptom'];
-		
-	$sql = "UPDATE anticoncepcion
-	SET  codpaci = '$codpaci', coddoc = '$coddoc', fechaan = '$fechaan', registroan = '$registroan', detallean = '$detallean', atencionan = '$atencionan', orientacion = '$orientacion', metodosantimode = '$metodosantimode', insumos = '$insumos', metodosnat = '$metodosnat', muestraspaptom = '$muestraspaptom'
-			WHERE idanticoncepcion = '$idanticoncepcion'";
-			//if-else statement in executing our query
-			$_SESSION['message'] = ( $db->exec($sql) ) ? 'Historial actualizado correctamente' : 'No se puso actualizar el área';
+include_once('../config/dbconect.php');
 
-		}
-		catch(PDOException $e){
-			$_SESSION['message'] = $e->getMessage();
-		}
+if(isset($_POST['agregar'])){  // o 'editar' según tu botón
+    $database = new Connection();
+    $db = $database->open();
 
-		//Cerrar la conexión
-		$database->close();
-	}
-	else{
-		$_SESSION['message'] = 'Complete el formulario de edición';
-	}
+    try {
+        $id = $_POST['id']; // importante: usar POST
+        $semestre_id = $_POST['semestre_id'];
+        $estudiante_id = $_POST['estudiante_id'];
+        $estado = $_POST['estado'];
 
-	header('location: ../../folder/anticoncepcion.php');
+        $sql = "UPDATE inscripcions 
+                SET semestre_id = :semestre_id, 
+                    estudiante_id = :estudiante_id, 
+                    estado = :estado 
+                WHERE id = :id";
 
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            ':semestre_id' => $semestre_id,
+            ':estudiante_id' => $estudiante_id,
+            ':estado' => $estado,
+            ':id' => $id
+        ]);
+
+        $_SESSION['message'] = "Inscripción actualizada correctamente";
+
+    } catch(PDOException $e) {
+        $_SESSION['message'] = "Error al actualizar: " . $e->getMessage();
+    }
+
+    $database->close();
+
+    // Redirigir al listado
+    header('Location: ../../folder/inscripciones.php');
+    exit;
+} else {
+    $_SESSION['message'] = "Formulario no enviado correctamente";
+    header('Location: ../../folder/inscripciones.php');
+    exit;
+}
 ?>

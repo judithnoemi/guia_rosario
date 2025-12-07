@@ -1,40 +1,40 @@
 <?php
-	session_start();
-	include_once('../config/dbconect.php');
+session_start();
+include_once('../config/dbconect.php');
 
-	if(isset($_POST['editar'])){
-		$database = new Connection();
-		$db = $database->open();
-		try{
-			$idhistoriain  = $_GET['idhistoriain']; 
-			$codpac = $_POST['codpac'];
-			$doctor = $_POST['coddoc'];
-	        $grado_instruccion = $_POST['grado_instruccion'];
-			$fecha = $_POST['fecha'];
-			$diagnostico = $_POST['diagnostico'];
-			$consulta = $_POST['consulta'];
-			$hospital = $_POST['hospital'];
-			$estado = $_POST['estado'];
-			
+if(isset($_POST['editar'])){
+    $database = new Connection();
+    $db = $database->open();
 
-			$sql = "UPDATE historial 
-			SET  codpac = '$codpac', coddoc = '$doctor', grado_instruccion = '$grado_instruccion', fecha = '$fecha',  diagnostico = '$diagnostico', consulta = '$consulta', hospital = '$hospital', estado = '$estado' 
-			WHERE idhistoriain = '$idhistoriain'";
-			//if-else statement in executing our query
-			$_SESSION['message'] = ( $db->exec($sql) ) ? 'Historial actualizado correctamente' : 'No se puso actualizar el área';
+    try {
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $semestre = $_POST['semestre'];
+        $descripcion = $_POST['descripcion'];
+        $turno_id = $_POST['turno_id'];
 
-		}
-		catch(PDOException $e){
-			$_SESSION['message'] = $e->getMessage();
-		}
+        // Prepared statement seguro
+        $sql = "UPDATE carreras 
+                SET nombre = :nombre, semestre = :semestre, descripcion = :descripcion, turno_id = :turno_id 
+                WHERE id = :id";
 
-		//Cerrar la conexión
-		$database->close();
-	}
-	else{
-		$_SESSION['message'] = 'Complete el formulario de edición';
-	}
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':semestre', $semestre);
+        $stmt->bindParam(':descripcion', $descripcion);
+        $stmt->bindParam(':turno_id', $turno_id);
+        $stmt->bindParam(':id', $id);
 
-	header('location: ../../folder/historia.php');
+        $_SESSION['message'] = ($stmt->execute()) ? 'Registro actualizado correctamente' : 'No se pudo actualizar el registro';
 
+    } catch(PDOException $e) {
+        $_SESSION['message'] = $e->getMessage();
+    }
+
+    $database->close();
+} else {
+    $_SESSION['message'] = 'Complete el formulario de edición';
+}
+
+header('location: ../../folder/carreras.php');
 ?>

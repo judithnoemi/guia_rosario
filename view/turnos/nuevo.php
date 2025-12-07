@@ -7,9 +7,9 @@ if(isset($_POST['agregar'])){
 	$db = $database->open();
 	try{
 		//hacer uso de una declaración preparada para prevenir la inyección de sql
-		$stmt = $db->prepare("INSERT INTO doctor (dnidoc, nomdoc,apedoc,codespe,sexo,telefo,fechanaci,correo ,naciona,estado) VALUES (:dnidoc, :nomdoc, :apedoc, :codespe, :sexo,:telefo,:fechanaci,:correo,:naciona,:estado)");
+		$stmt = $db->prepare("INSERT INTO turnos (id, nombre,descripcion) VALUES (:id, :nombre, :descripcion)");
 		//instrucción if-else en la ejecución de nuestra declaración preparada
-		$_SESSION['message'] = ( $stmt->execute(array(':dnidoc' => $_POST['dnidoc'] , ':nomdoc' => $_POST['nomdoc'] , ':apedoc' => $_POST['apedoc'], ':codespe' => $_POST['codespe'], ':sexo' => $_POST['sexo'], ':telefo' => $_POST['telefo'], ':fechanaci' => $_POST['fechanaci'], ':correo' => $_POST['correo'], ':naciona' => $_POST['naciona'], ':estado' => $_POST['estado'])) ) ? 'Paciente guardado correctamente' : 'Algo salió mal. No se puede agregar miembro';	
+		$_SESSION['message'] = ( $stmt->execute(array(':id' => $_POST['id'] , ':nombre' => $_POST['nombre'] , ':descripcion' => $_POST['descripcion'])) ) ? 'Turno guardado correctamente' : 'Algo salió mal. No se puede agregar miembro';	
 	
 	}
 	catch(PDOException $e){
@@ -24,6 +24,6 @@ else{
 	$_SESSION['message'] = 'Llene el formulario';
 }
 
-header('location: ../../folder/doctor.php');
+header('location: ../../folder/turnos.php');
 	
 ?>

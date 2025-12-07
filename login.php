@@ -41,7 +41,7 @@ if(isset($_POST['login'])) {
             if ($_SESSION['cargo'] == 1) {
               header('Location: view/admin/admin.php');
           } else if ($_SESSION['cargo'] == 2) {
-              header('Location: view/admin/admin.php');
+              header('Location: view/admin/usuario.php');
           } 
         
         
@@ -77,13 +77,13 @@ if(isset($_POST['login'])) {
    <!--  <img class="wave"src="../assets/img/wave.png" alt="">  -->
     <div class="contenedor">
     <div class="img">
-    <img src="assets/img/logo.jpeg" alt="100">
+    <img src="assets/img/images.png" alt="100">
     </div>
     <div class="contenido-login">
 
     <form autocomplete="off" method="POST"  role="form">
 
-    <img src="assets/img/logo.png" alt="">
+    
     <h2>Login</h2>
     <?php
     if(isset($errMsg)){

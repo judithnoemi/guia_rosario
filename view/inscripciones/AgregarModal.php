@@ -13,116 +13,69 @@
 					<div class="card-body">
 						<form method="POST" autocomplete="off" enctype="multipart/form-data">
 							<div class="row">
+					
+
+                            <div class="col-md-6">
+    <div class="form-group form-group-default">
+        <label>Semestre</label>
+        <select name="semestre_id" class="form-control" required>
+            <option value="">Seleccione un turno</option>
+            <?php
+            // Traer todos los turnos desde la tabla turnos
+            include_once('../view/config/dbconect.php');
+            $database = new Connection();
+            $db = $database->open();
+            $stmt = $db->query("SELECT id, nombre FROM semestre ");
+            foreach($stmt as $t){
+                echo "<option value='".$t['id']."'>".$t['nombre']."</option>";
+            }
+            $database->close();
+            ?>
+        </select>
+    </div>
+</div>
 
 
+<div class="col-md-6">
+    <div class="form-group form-group-default">
+        <label>Estudiante</label>
+        <select name="estudiante_id" class="form-control" required>
+            <option value="">Seleccione un estudiante</option>
+            <?php
+            // Traer todos los estudiantes desde la tabla estudiantes
+            include_once('../view/config/dbconect.php');
+            $database = new Connection();
+            $db = $database->open();
 
-								<!-- Paciente -->
-								<div class="col-md-6">
+            // Consulta para traer id, nombres y apellidos
+            $stmt = $db->query("SELECT id, nombres, apellidos FROM estudiantes ORDER BY apellidos ASC");
+
+            foreach($stmt as $estudiante){
+                // Concatenar nombres y apellidos para mostrar en el select
+                $nombre_completo = $estudiante['nombres'] . ' ' . $estudiante['apellidos'];
+                echo "<option value='".$estudiante['id']."'>".$nombre_completo."</option>";
+            }
+
+            $database->close();
+            ?>
+        </select>
+    </div>
+</div>
+
+				<div class="col-sm-12">
 									<div class="form-group form-group-default">
-										<label>Paciente</label>
-										<select class="form-control" name="codpaci">
-											<option selected disabled> Seleccionar paciente </option>
-											<?php
-											include_once('../view/config/dbconect.php');
-											$database = new Connection();
-											$db = $database->open();
-											$sql = "SELECT * FROM pacientes";
-											foreach ($db->query($sql) as $resultado) {
-												echo "<option value='" . $resultado['codpaci'] . "'>" . $resultado['nombrep'] . " " . $resultado['apellidop'] . "</option>";
-											}
-
-											$database->close();
-											?>
-										</select>
+										<label>Estado</label>
+										<input name="estado" type="text" class="form-control" required placeholder="">
 									</div>
 								</div>
 
-								<div class="col-md-6">
-									<div class="form-group form-group-default">
-										<label>Medico</label>
-										<select class="form-control" id="medico" required name="coddoc">
-											<?php
-											include_once('../view/config/dbconect.php');
-											$database = new Connection();
-											$db = $database->open();
+							
+                            
 
-											$sql = "SELECT * from doctor";
+								<!-- Turno -->
 
-											foreach ($db->query($sql) as $resultado) {
-												$nombre_completo = $resultado['apedoc'] . ' ' . $resultado['nomdoc'];
-												echo "<option value='" . $resultado['coddoc'] . "'>" . $nombre_completo . "</option>";
-											}
-
-											$database->close();
-											?>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-sm-6">
-									<div class="form-group form-group-default">
-										<label for="fecha">Fecha:</label>
-										<input type="date" id="fecha" name="fechaan"  required>
-									</div>
-								</div>
-
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Registro</label>
-										<input name="registroan" type="text" class="form-control" required placeholder="Ingrese grado instruccion">
-									</div>
-								</div>
-
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Detalle</label>
-										<input name="detallean" type="text" class="form-control" required placeholder="Ingrese el diagnostico">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Atencion</label>
-										<input name="atencionan" type="text" class="form-control" required placeholder="Ingresa la consulta">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Orientacion</label>
-										<input name="orientacion" type="text" class="form-control" placeholder="Ingrese el nombre del hosítal">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Metodos Anticonceptivos Modernos</label>
-										<input name="metodosantimode" type="text" class="form-control" placeholder="Ingrese el nombre del hosítal">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Insumos</label>
-										<input name="insumos" type="text" class="form-control" placeholder="Ingrese el nombre del hosítal">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Metodos Naturales</label>
-										<input name="metodosnat" type="text" class="form-control" placeholder="Ingrese el nombre del hosítal">
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<div class="form-group form-group-default">
-										<label>Muestras Pap Tomadas</label>
-										<input name="muestraspaptom" type="text" class="form-control" placeholder="Ingrese el nombre del hosítal">
-									</div>
-								</div>
+							
+								
 
 							</div>
 					</div>
